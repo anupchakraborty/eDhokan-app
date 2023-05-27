@@ -31,4 +31,8 @@ class Customer extends Model
     {
         return $this->hasMany('App\Models\CustomerInvoice');
     }
+    public function pos()
+    {
+        return $this->hasMany('App\Models\POS');
+    }
 }

@@ -53,6 +53,10 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('show-supplier','App\Http\Controllers\Backend\SupplierInvoiceController@shoSupplier');
 
     /*----------------------------------------------
+        POS route are here
+    |-----------------------------------------------*/
+    Route::resource('pos', 'App\Http\Controllers\Backend\POSController', ['names'=>'admin.pos']);
+    /*----------------------------------------------
         Login and Logout route are here
     |-----------------------------------------------*/
     Route::get('/login', 'App\Http\Controllers\Backend\Auth\LoginController@showLoginForm')->name('admin.login');

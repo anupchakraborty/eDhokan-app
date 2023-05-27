@@ -30,4 +30,8 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\CustomerInvoice');
     }
+    public function pos()
+    {
+        return $this->belongsTo('App\Models\POS');
+    }
 }
