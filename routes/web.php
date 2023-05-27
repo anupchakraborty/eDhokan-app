@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin'], function(){
         Customer route are here
     |-----------------------------------------------*/
     Route::resource('customer', 'App\Http\Controllers\Backend\CustomerController', ['names'=>'admin.customer']);
+    Route::resource('customer-invoice', 'App\Http\Controllers\Backend\CustomerInvoiceController', ['names'=>'admin.customer.invoice']);
+    Route::get('show-customer','App\Http\Controllers\Backend\CustomerInvoiceController@showCustomer');
     /*----------------------------------------------
         Products route are here
     |-----------------------------------------------*/

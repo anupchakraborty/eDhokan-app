@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\SupplierInvoice');
     }
+
+    public function customerInvoice()
+    {
+        return $this->belongsTo('App\Models\CustomerInvoice');
+    }
 }

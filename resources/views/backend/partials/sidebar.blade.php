@@ -1,3 +1,10 @@
+@php
+        $total_admin = count(App\Models\Admin::select('id')->get());
+        $total_product = count(App\Models\Product::select('id')->get());
+        $total_customer = count(App\Models\Customer::select('id')->get());
+        $total_supplier = count(App\Models\Supplier::select('id')->get());
+@endphp
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -46,7 +53,7 @@
                 <p>
                   Admin
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">New</span>
+                  <span class="badge badge-info right">{{ $total_admin }}</span>
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -64,7 +71,7 @@
                 <p>
                   Customer
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">6</span>
+                  <span class="badge badge-info right">{{ $total_customer }}</span>
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -75,7 +82,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                  <a href="{{ Route('admin.customer.invoice.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Customer Invoice</p>
                   </a>
@@ -88,7 +95,7 @@
                 <p>
                   Products
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">6</span>
+                  <span class="badge badge-info right">{{ $total_product }}</span>
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -112,7 +119,7 @@
                 <p>
                   Supplier
                   <i class="fas fa-angle-left right"></i>
-                  <span class="badge badge-info right">6</span>
+                  <span class="badge badge-info right">{{ $total_supplier }}</span>
                 </p>
               </a>
               <ul class="nav nav-treeview">
