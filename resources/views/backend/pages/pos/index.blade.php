@@ -29,7 +29,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.pos.index') }}">Manage POS</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.pos.index') }}">Manage Purchage</a></li>
                         </ol>
                     </div>
                     </div>
@@ -42,12 +42,12 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">POS List</h4>
+                                <h4 class="mb-sm-0 font-size-18">Purchage List</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item active">
-                                            <a href="{{ route('admin.pos.create') }}">Add POS</a>
+                                            <a href="{{ route('admin.pos.create') }}">Add Purchage</a>
                                         </li>
                                     </ol>
                                 </div>
@@ -80,30 +80,35 @@
                                                 <tr>
                                                     <td>{{ $loop->index+1 }}</td>
                                                     <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $pos->invoice_id }}</a> </td>
-                                                    <td>{{ $pos->customer_id }}</td>
-                                                    <td> {{ $pos->product_id }}</td>
+                                                    <td>
+                                                        @php
+                                                            $customer = App\Models\Customer::find($pos->customer_id);
+                                                        @endphp
+                                                        {{$customer->first_name}} {{$customer->last_name}}
+                                                    </td>
+                                                    <td>
+                                                        @php
+                                                            $product = App\Models\Product::find($pos->product_id);
+                                                        @endphp
+                                                         {{ $product->product_name }}
+                                                    </td>
                                                     <td> {{ $pos->quantity }}</td>
                                                     <td> {{ $pos->unit_price }}</td>
                                                     <td> {{ $pos->sub_total }}</td>
                                                     <td>
                                                         @if($pos->status == 0)
-                                                                <span class="badge badge-danger">Deactive</span>
+                                                                <span class="badge badge-danger">Due</span>
                                                         @else
-                                                                <span class="badge badge-success">Active</span>
+                                                                <span class="badge badge-success">Paid</span>
                                                         @endif
                                                     </td>
 
                                                     <td>
                                                         <div class="d-flex gap-3">
-                                                            @if(Auth::guard('admin')->user()->can('pos.edit'))
                                                             <a href="{{ route('admin.pos.edit', $pos->id) }}" class="text-success"><i class="fas fa-edit"></i></a>&nbsp;
-                                                            @endif
-                                                            @if(Auth::guard('admin')->user()->can('pos.edit'))
                                                             <a class="text-danger" href="#delete-form{{ $pos->id }}" data-toggle="modal">
                                                             <i class="fas fa-trash"></i>
                                                             </a>
-                                                            @endif
-                                                                @if(Auth::guard('admin')->user()->can('pos.delete'))
                                                                 <!--Delete Modal -->
                                                                 <div id="delete-form{{ $pos->id }}" class="modal fade">
                                                                     <div class="modal-dialog modal-confirm">
@@ -129,7 +134,6 @@
                                                                             </div>
                                                                     </div>
                                                                 </div>
-                                                                @endif
                                                         </div>
                                                     </td>
                                                 </tr>

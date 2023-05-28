@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    $("#getProduct").hide();
     //Supplier Show
     function showCustomer(){
         const customerId = document.getElementById('customer_id').value;
@@ -38,6 +39,7 @@
         //show product
         var count = 1;
         $('#addProduct').on('click',function(){
+            $("#getProduct").show();
             var product_id = $('#product_id').find(':selected')[0].id;
             var productName = $('#product_id').find(":selected").text();
             var qty = $('#qty').val();

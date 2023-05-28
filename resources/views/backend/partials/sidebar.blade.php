@@ -1,6 +1,7 @@
 @php
     $usr = Auth::guard('admin')->user();
     $total_admin = count(App\Models\Admin::select('id')->get());
+    $total_pos = count(App\Models\POS::select('id')->get());
     $total_product = count(App\Models\Product::select('id')->get());
     $total_customer = count(App\Models\Customer::select('id')->get());
     $total_supplier = count(App\Models\Supplier::select('id')->get());
@@ -163,16 +164,16 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                POS
+                Purchage
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">New</span>
+                <span class="badge badge-info right">{{$total_pos}}</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ Route('admin.pos.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Manage POS</p>
+                  <p>Manage Purchage</p>
                 </a>
               </li>
             </ul>

@@ -42,11 +42,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Create POS</h4>
+                                <h4 class="mb-sm-0 font-size-18">Create Purchage</h4>
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item active">
-                                            <a href="{{ route('admin.supplier.invoice.index') }}">Manage POS</a>
+                                            <a href="{{ route('admin.supplier.invoice.index') }}">Manage Purchage</a>
                                         </li>
                                     </ol>
                                 </div>
@@ -61,13 +61,14 @@
                             <div class="d-flex justify-content-center">
                                 <div class="card" style="width:50%">
                                     <div class="card-header">
-                                        <h3 class="card-title">Create POS</h3>
+                                        <h3 class="card-title">Create Purchage</h3>
                                     </div>
     
                                     <div class="card-body">
                                         <div>
                                             <div class="row">
                                                 <label for="formrow-name-input" class="form-label">Customer Info</label>
+                                                @include('backend.partials.message')
                                             </div>      
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -147,49 +148,63 @@
                                     <div class="card-header">
                                         <h3 class="card-title">Invoice Info</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" >
                                         <div id="showcustomer">
     
                                         </div>
-                                        <div id="productInfo" style="margin-top: 10px">
-                                            <table class="table table-border" id="getProduct">
-                                                <thead>
+                                        <div id="invoice_info" class="mt-4">
+                                            <div class="row">
+                                                <div class="col-md-6 text-left">
+                                                    <p>Invoice No : 
+                                                        <span id="invoiceId">
+                                                            <input type="hidden" id="getInvoiceId" value="10{{ $lastId }}">
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-6 text-right">
+                                                    <p>Date : <span id="current_date"></span></p>
+                                                </div>
+                                            </div>
+                                            <div id="productInfo" style="margin-top: 10px">
+                                                <table class="table table-border" id="getProduct">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>#</td>
+                                                            <td>Product Name</td>
+                                                            <td>Quantity</td>
+                                                            <td>Unit Price</td>
+                                                            <td>Sub Total</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="new">
+                                                        
+                                                    </tbody>
                                                     <tr>
-                                                        <td>#</td>
-                                                        <td>Product Name</td>
-                                                        <td>Quantity</td>
-                                                        <td>Unit Price</td>
-                                                        <td>Sub Total</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td class="text-right text-dark">
+                                                            <h5><strong style="font-size: 16px">Sub Total:</strong></h5>
+                                                            <p><strong style="font-size: 14px">Tax (5%) :</strong></p>
+                                                        </td>
+                                                        <td class="text-left text-dark">
+                                                            <h5><strong id="subTotal" style="font-size: 18px"></strong></h5>
+                                                            <h5><strong id="taxTotal" style="font-size: 16px"></strong></h5>
+                                                        </td>
                                                     </tr>
-                                                </thead>
-                                                <tbody id="new">
-                                                    
-                                                </tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td class="text-right text-dark">
-                                                        <h5><strong style="font-size: 16px">Sub Total:</strong></h5>
-                                                        <p><strong style="font-size: 14px">Tax (5%) :</strong></p>
-                                                    </td>
-                                                    <td class="text-left text-dark">
-                                                        <h5><strong id="subTotal" style="font-size: 18px"></strong></h5>
-                                                        <h5><strong id="taxTotal" style="font-size: 16px"></strong></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td class="text-right text-dark">
-                                                        <h5><strong style="font-size: 16px">Gross Total:</strong></h5>
-                                                    </td>
-                                                    <td class="text-left text-dark">
-                                                        <h5><strong id="grossTotal" style="font-size: 18px"></strong></h5>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td class="text-right text-dark">
+                                                            <h5><strong style="font-size: 16px">Gross Total:</strong></h5>
+                                                        </td>
+                                                        <td class="text-left text-dark">
+                                                            <h5><strong id="grossTotal" style="font-size: 18px"></strong></h5>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

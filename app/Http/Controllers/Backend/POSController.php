@@ -42,8 +42,9 @@ class POSController extends Controller
      */
     public function create()
     {
-
-        return view('backend.pages.pos.create');
+        $lastId = DB::getPdo()->lastInsertId();
+        //dd($lastId);
+        return view('backend.pages.pos.create',compact('lastId'));
     }
 
     /**
@@ -54,7 +55,29 @@ class POSController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation Data
+        $request->validate([
+            'invoice_id' => 'required',
+            'customer_id' => 'required',
+            'product_id' => 'required',
+            'quantity' => 'required|min:1',
+        ]);
+        // dd($request->all());
+        // Create New purchage
+        foreach($request->product_id as $key=>$product){
+            $invoice = new POS();
+            $invoice->invoice_id = $request->invoice_id;
+            $invoice->customer_id = $request->customer_id;
+            $invoice->product_id = $product;
+            $invoice->quantity = $request->quantity[$key];
+            $invoice->unit_price = $request->unit_price[$key];
+            $invoice->sub_total = $request->sub_total[$key];
+            $invoice->status = $request->status;
+            $invoice->save();
+        }
+
+        Alert::success('Created Successful', 'Purchage Entry has been created !!');
+        return redirect()->route('admin.pos.index');
     }
 
     /**
